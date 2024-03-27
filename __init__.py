@@ -6,7 +6,7 @@ bl_info = {
     "description": "Custom shortcuts for Blender",
     "warning": "", "wiki_url": "", "category": "UI"}
 
-fac=0.1
+#fac = 0.1
 
 def tile_area(self):
     for area in bpy.context.screen.areas:
@@ -21,6 +21,7 @@ def tile_area(self):
             break
 
 def tile_area_type(self,area_type,direction,fac):
+
     saved_area = bpy.context.area.ui_type
     bpy.context.area.ui_type = area_type
     for area in bpy.context.screen.areas:
@@ -35,8 +36,9 @@ def tile_area_type(self,area_type,direction,fac):
             if direction == 'VERTICAL' and bpy.context.area.width < 800:
                 fac = 0.5
             if direction == 'HORIZONTAL' and bpy.context.area.height < 800:
-                fac = 0.5                
-            bpy.ops.screen.area_split(direction=direction, factor=fac, cursor=(self.x,self.y))
+                fac = 0.5              
+            if direction!= 'NULL':
+                bpy.ops.screen.area_split(direction, factor=fac, cursor=(self.x,self.y))
             break
     bpy.context.area.ui_type = saved_area
 
@@ -176,56 +178,56 @@ class BRT_Area_Tile_VIEW3D(bpy.types.Operator):
     bl_idname = "brtwm.tile_area_view3d"
     bl_label = "Tile_Area_VIEW_3D"
     def execute(self, context):
-        tile_area_type('VIEW_3D','NULL',0.5)
+        tile_area_type(self,'VIEW_3D','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_PROPERTIES(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_properties"
     bl_label = "Tile_Area_Properties"
     def execute(self, context):
-        tile_area_type('PROPERTIES','VERTICAL',0.7)
+        tile_area_type(self,'PROPERTIES','VERTICAL',0.7)
         return {'FINISHED'}
 class BRT_Area_Tile_OUTLINER(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_outliner"
     bl_label = "Tile_Area_Properties"
     def execute(self, context):
-        tile_area_type('OUTLINER','VERTICAL',0.7)
+        tile_area_type(self,'OUTLINER','VERTICAL',0.7)
         return {'FINISHED'}
 class BRT_Area_Tile_IMAGE(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_image"
     bl_label = "Tile_Area_IMAGE"
     def execute(self, context):
-        tile_area_type('IMAGE_EDITOR','NULL',0.5)
+        tile_area_type(self,'IMAGE_EDITOR','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_UV(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_uv"
     bl_label = "Tile_Area_UV"
     def execute(self, context):
-        tile_area_type('UV','NULL',0.5)
+        tile_area_type(self,'UV','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_FILE_BROWSER(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_filebrowser"
     bl_label = "Tile_Area_File_Browser"
     def execute(self, context):
-        tile_area_type('FILE_BROWSER','NULL',0.5)
+        tile_area_type(self,'FILE_BROWSER','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_TEXT_EDITOR(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_text_editor"
     bl_label = "Tile_Area_Text_Editor"
     def execute(self, context):
-        tile_area_type('TEXT_EDITOR','NULL',0.5)
+        tile_area_type(self,'TEXT_EDITOR','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_SPREADSHEET(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_spreadsheet"
     bl_label = "Tile_Area_SpreadSheet"
     def execute(self, context):
-        tile_area_type('SPREADSHEET','NULL',0.5)
+        tile_area_type(self,'SPREADSHEET','NULL',0.5)
         return {'FINISHED'}
 
 class BRT_Area_Tile_ASSET_BROWSER(bpy.types.Operator):
@@ -233,63 +235,63 @@ class BRT_Area_Tile_ASSET_BROWSER(bpy.types.Operator):
     bl_idname = "brtwm.tile_area_asset_browser"
     bl_label = "Tile_Area_Asset_Browser"
     def execute(self, context):
-        tile_area_type('ASSETS','VERTICAL',0.7)
+        tile_area_type(self,'ASSETS','VERTICAL',0.7)
         return {'FINISHED'}
 class BRT_Area_Tile_SHADER_EDITOR(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_shader_editor"
     bl_label = "Tile_Area_Shader"
     def execute(self, context):
-        tile_area_type('ShaderNodeTree','NULL',0.5)
+        tile_area_type(self,'ShaderNodeTree','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_DRIVERS(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_driver"
     bl_label = "Tile_Area_Driver"
     def execute(self, context):
-        tile_area_type('DRIVERS','NULL',0.5)
+        tile_area_type(self,'DRIVERS','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_FCURVES(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_fcurves"
     bl_label = "Tile_Area_Fcurves"
     def execute(self, context):
-        tile_area_type('FCURVES','NULL',0.5)
+        tile_area_type(self,'FCURVES','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_GEOMETRY_NODES(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_geo_nodes"
     bl_label = "Tile_Area_Text_Geometry_Node"
     def execute(self, context):
-        tile_area_type('GeometryNodeTree','NULL',0.5)
+        tile_area_type(self,'GeometryNodeTree','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_INFO(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_info"
     bl_label = "Tile_Area_Text_Info"
     def execute(self, context):
-        tile_area_type('INFO','NULL',0.5)
+        tile_area_type(self,'INFO','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_DOPESHEET(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_dopesheet"
     bl_label = "Tile_Area_Dopesheet"
     def execute(self, context):
-        tile_area_type('DOPESHEET','HORIZONTAL',0.7)
+        tile_area_type(self,'DOPESHEET','HORIZONTAL',0.7)
         return {'FINISHED'}
 class BRT_Area_Tile_TIMELINE(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_timeline"
     bl_label = "Tile_Area_Timeline"
     def execute(self, context):
-        tile_area_type('TIMELINE','HORIZONTAL',0.7)
+        tile_area_type(self,'TIMELINE','HORIZONTAL',0.7)
         return {'FINISHED'}
 class BRT_Area_Tile_NLA(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_nla"
     bl_label = "Tile_Area_NLA"
     def execute(self, context):
-        tile_area_type('NLA_EDITOR','HORIZONTAL',0.6)
+        tile_area_type(self,'NLA_EDITOR','HORIZONTAL',0.6)
         return {'FINISHED'}
 
 class BRT_Area_Tile_COMPOSITOR(bpy.types.Operator):
@@ -297,28 +299,28 @@ class BRT_Area_Tile_COMPOSITOR(bpy.types.Operator):
     bl_idname = "brtwm.tile_area_compositor"
     bl_label = "Tile_Area_Compositor"
     def execute(self, context):
-        tile_area_type('CompositorNodeTree','NULL',0.5)
+        tile_area_type(self,'CompositorNodeTree','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_CONSOLE(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_console"
     bl_label = "Tile_Area_Console"
     def execute(self, context):
-        tile_area_type('CONSOLE','NULL',0.5)
+        tile_area_type(self,'CONSOLE','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_CLIP_EDITOR(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_clip_editor"
     bl_label = "Tile_Area_Clip_Editor"
     def execute(self, context):
-        tile_area_type('CLIP_EDITOR','NULL',0.5)
+        tile_area_type(self,'CLIP_EDITOR','NULL',0.5)
         return {'FINISHED'}
 class BRT_Area_Tile_SEQUENCER(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "brtwm.tile_area_sequencer"
     bl_label = "Tile_Area_Sequencer"
     def execute(self, context):
-        tile_area_type('SEQUENCE_EDITOR','NULL',0.5)
+        tile_area_type(self,'SEQUENCE_EDITOR','NULL',0.5)
         return {'FINISHED'}                
 
 class BRT_Open_ASSETS(bpy.types.Operator):
